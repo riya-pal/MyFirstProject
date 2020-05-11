@@ -1,0 +1,50 @@
+<h2>Register</h2>
+<form name="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" formControlName="firstName" class="form-control" placeholder="First Name"
+      [(ngModel)]="model.firstName" />
+    <div *ngIf="f.firstName.invalid && (f.firstName.dirty || f.firstName.touched)">
+      <div *ngIf="f.firstName.errors.required" style="color: red;">First Name is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name"
+      [(ngModel)]="model.lastName" />
+    <div *ngIf="f.lastName.invalid && (f.lastName.dirty || f.lastName.touched)">
+      <div *ngIf="f.lastName.errors.required" style="color: red;">Last Name is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" formControlName="username" class="form-control" placeholder="username"
+      [(ngModel)]="model.username" />
+    <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)">
+      <div *ngIf="f.username.errors.required" style="color: red;">Username is required</div>
+      <div *ngIf="f.username.errors.minlength" style="color: red;">Username must be at least 5 characters long</div>
+      <div *ngIf="f.username.errors.maxlength" style="color: red;">Username cannot be more than 25 characters long</div>
+      <div *ngIf="f.username.errors.pattern" style="color: red;">Your username must contain only numbers and letters
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" formControlName="password" class="form-control" placeholder="password"
+      [(ngModel)]="model.password" />
+    <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+      <div *ngIf="f.password.errors.required" style="color: red;">Password is required</div>
+      <div *ngIf="f.password.errors.minlength" style="color: red;">Password must be at least 6 characters</div>
+      <div *ngIf="f.password.errors.pattern" style="color: red;">Your password must contain at least one uppercase, one
+        lowercase, and one number</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button [disabled]="registerForm.invalid" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Register
+    </button>
+    <br>
+    <a routerLink="" class="btn btn-link">Go Back To Login Page</a>
+  </div>
+</form>
